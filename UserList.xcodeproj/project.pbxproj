@@ -3,11 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		07B8DC722EB8E1FA0020D60A /* UserListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B8DC712EB8E1FA0020D60A /* UserListViewModel.swift */; };
+		07B8DC762EB8E90E0020D60A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B8DC732EB8E90E0020D60A /* User.swift */; };
+		07B8DC772EB8E90E0020D60A /* UserListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B8DC742EB8E90E0020D60A /* UserListResponse.swift */; };
 		2F015BA82ACC938F009A098C /* UserListRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F015BA72ACC938F009A098C /* UserListRepositoryTests.swift */; };
 		2F6F65332ACD69290011B439 /* Readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 2F6F65322ACD69290011B439 /* Readme.md */; };
 		2F804AE22ACC976300A46A03 /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F804AE12ACC976300A46A03 /* UserDetailView.swift */; };
@@ -31,6 +33,8 @@
 
 /* Begin PBXFileReference section */
 		07B8DC712EB8E1FA0020D60A /* UserListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewModel.swift; sourceTree = "<group>"; };
+		07B8DC732EB8E90E0020D60A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		07B8DC742EB8E90E0020D60A /* UserListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListResponse.swift; sourceTree = "<group>"; };
 		2F015BA72ACC938F009A098C /* UserListRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListRepositoryTests.swift; sourceTree = "<group>"; };
 		2F6F65322ACD69290011B439 /* Readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 		2F804AE12ACC976300A46A03 /* UserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
@@ -44,10 +48,6 @@
 		2FFB642B2AC6D256007F2F80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2FFB64342AC6D256007F2F80 /* UserListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UserListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		07B8DC6F2EB8E0E10020D60A /* Model */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Model; sourceTree = "<group>"; };
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		2FFB64212AC6D255007F2F80 /* Frameworks */ = {
@@ -77,11 +77,20 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		07B8DC752EB8E90E0020D60A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				07B8DC732EB8E90E0020D60A /* User.swift */,
+				07B8DC742EB8E90E0020D60A /* UserListResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		2FF9D9172ACB3C0B00F3A6C5 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				2FFB64272AC6D255007F2F80 /* UserListApp.swift */,
-				07B8DC6F2EB8E0E10020D60A /* Model */,
+				07B8DC752EB8E90E0020D60A /* Model */,
 				07B8DC702EB8E10E0020D60A /* Views */,
 				2FF9D91E2ACB3DD400F3A6C5 /* UserListRepository.swift */,
 				2FF9D9192ACB3CD800F3A6C5 /* HTTPClient */,
@@ -157,9 +166,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				07B8DC6F2EB8E0E10020D60A /* Model */,
 			);
 			name = UserList;
 			productName = UserList;
@@ -253,6 +259,8 @@
 				2F804AE22ACC976300A46A03 /* UserDetailView.swift in Sources */,
 				2FF9D91F2ACB3DD400F3A6C5 /* UserListRepository.swift in Sources */,
 				2FFB64282AC6D255007F2F80 /* UserListApp.swift in Sources */,
+				07B8DC762EB8E90E0020D60A /* User.swift in Sources */,
+				07B8DC772EB8E90E0020D60A /* UserListResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -31,7 +31,7 @@ struct UserListView: View {
                         }
                     }
                     .onAppear {
-                        if self.shouldLoadMoreData(currentItem: user) {
+                        if viewModel.shouldLoadMoreData(currentItem: user) {
                             viewModel.fetchUsers()
                         }
                     }
@@ -82,7 +82,7 @@ struct UserListView: View {
                                 }
                             }
                             .onAppear {
-                                if self.shouldLoadMoreData(currentItem: user) {
+                                if viewModel.shouldLoadMoreData(currentItem: user) {
                                     viewModel.fetchUsers()
                                 }
                             }
@@ -116,14 +116,6 @@ struct UserListView: View {
         .onAppear {
             viewModel.fetchUsers()
         }
-    }
-
-
-
-    // TODO: - Should be an OutPut
-    private func shouldLoadMoreData(currentItem item: User) -> Bool {
-        guard let lastItem = viewModel.users.last else { return false }
-        return !viewModel.isLoading && item.id == lastItem.id
     }
 }
 

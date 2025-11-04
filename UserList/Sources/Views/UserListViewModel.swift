@@ -7,16 +7,13 @@
 
 import Foundation
 
+@MainActor
 class UserListViewModel: ObservableObject {
     @Published var users: [User] = []
     @Published var isLoading = false
     @Published var isGridView = false
 
     let repository = UserListRepository()
-
-    init() {
-        fetchUsers()
-    }
 
     func fetchUsers() {
         isLoading = true
@@ -34,5 +31,10 @@ class UserListViewModel: ObservableObject {
     func reloadUsers() {
         users.removeAll()
         fetchUsers()
+    }
+
+    func shouldLoadMoreData(currentItem item: User) -> Bool {
+        guard let lastItem = users.last else { return false }
+        return !isLoading && item.id == lastItem.id
     }
 }
