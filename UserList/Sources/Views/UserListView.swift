@@ -1,115 +1,24 @@
 import SwiftUI
 
 struct UserListView: View {
-    @StateObject var viewModel = UserListViewModel()
+    @ObservedObject var viewModel: UserListViewModel
 
-    
     var body: some View {
         NavigationView {
-            if !viewModel.isGridView {
-                List(viewModel.users) { user in
-                    NavigationLink(destination: UserDetailView(user: user)) {
-                        HStack {
-                            AsyncImage(url: URL(string: user.picture.thumbnail)) { image in
-                                image
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(width: 50, height: 50)
-                                    .clipShape(Circle())
-                            } placeholder: {
-                                ProgressView()
-                                    .frame(width: 50, height: 50)
-                                    .clipShape(Circle())
-                            }
-                            
-                            VStack(alignment: .leading) {
-                                Text("\(user.name.first) \(user.name.last)")
-                                    .font(.headline)
-                                Text("\(user.dob.date)")
-                                    .font(.subheadline)
-                            }
-                        }
-                    }
-                    .onAppear {
-                        if viewModel.shouldLoadMoreData(currentItem: user) {
-                            viewModel.fetchUsers()
-                        }
-                    }
+            Group {
+                if viewModel.isGridView {
+                    UserGridContent(viewModel: viewModel)
+                } else {
+                    UserListContent(viewModel: viewModel)
                 }
-                .navigationTitle("Users")
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Picker(selection: $viewModel.isGridView, label: Text("Display")) {
-                            Image(systemName: "rectangle.grid.1x2.fill")
-                                .tag(true)
-                                .accessibilityLabel(Text("Grid view"))
-                            Image(systemName: "list.bullet")
-                                .tag(false)
-                                .accessibilityLabel(Text("List view"))
-                        }
-                        .pickerStyle(SegmentedPickerStyle())
-                    }
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button(action: {
-                            viewModel.reloadUsers()
-                        }) {
-                            Image(systemName: "arrow.clockwise")
-                                .imageScale(.large)
-                        }
-                    }
+            }
+            .navigationTitle(viewModel.titleText)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    ViewModePicker(isGridView: $viewModel.isGridView)
                 }
-            } else {
-                ScrollView {
-                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))]) {
-                        ForEach(viewModel.users) { user in
-                            NavigationLink(destination: UserDetailView(user: user)) {
-                                VStack {
-                                    AsyncImage(url: URL(string: user.picture.medium)) { image in
-                                        image
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fill)
-                                            .frame(width: 150, height: 150)
-                                            .clipShape(Circle())
-                                    } placeholder: {
-                                        ProgressView()
-                                            .frame(width: 150, height: 150)
-                                            .clipShape(Circle())
-                                    }
-                                    
-                                    Text("\(user.name.first) \(user.name.last)")
-                                        .font(.headline)
-                                        .multilineTextAlignment(.center)
-                                }
-                            }
-                            .onAppear {
-                                if viewModel.shouldLoadMoreData(currentItem: user) {
-                                    viewModel.fetchUsers()
-                                }
-                            }
-                        }
-                    }
-                }
-                .navigationTitle("Users")
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Picker(selection: $viewModel.isGridView, label: Text("Display")) {
-                            Image(systemName: "rectangle.grid.1x2.fill")
-                                .tag(true)
-                                .accessibilityLabel(Text("Grid view"))
-                            Image(systemName: "list.bullet")
-                                .tag(false)
-                                .accessibilityLabel(Text("List view"))
-                        }
-                        .pickerStyle(SegmentedPickerStyle())
-                    }
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button(action: {
-                            viewModel.reloadUsers()
-                        }) {
-                            Image(systemName: "arrow.clockwise")
-                                .imageScale(.large)
-                        }
-                    }
+                ToolbarItem(placement: .topBarTrailing) {
+                    RefreshButton(action: viewModel.reloadUsers)
                 }
             }
         }
@@ -119,8 +28,78 @@ struct UserListView: View {
     }
 }
 
+// MARK: - Content Views
+
+struct UserListContent: View {
+    @ObservedObject var viewModel: UserListViewModel
+
+    var body: some View {
+        List(viewModel.users) { user in
+            NavigationLink(destination: UserDetailView(user: user)) {
+                UserCellTypeView(user: user, type: .cellView)
+            }
+            .onAppear {
+                if viewModel.shouldLoadMoreData(currentItem: user) {
+                    viewModel.fetchUsers()
+                }
+            }
+        }
+    }
+}
+
+struct UserGridContent: View {
+    @ObservedObject var viewModel: UserListViewModel
+    let columns = [GridItem(.adaptive(minimum: 150))]
+
+    var body: some View {
+        ScrollView {
+            LazyVGrid(columns: columns) {
+                ForEach(viewModel.users) { user in
+                    NavigationLink(destination: UserDetailView(user: user)) {
+                        UserCellTypeView(user: user, type: .roundView)
+                    }
+                    .onAppear {
+                        if viewModel.shouldLoadMoreData(currentItem: user) {
+                            viewModel.fetchUsers()
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// MARK: - Toolbar Components
+
+struct ViewModePicker: View {
+    @Binding var isGridView: Bool
+
+    var body: some View {
+        Picker(selection: $isGridView, label: Text("Display")) {
+            Image(systemName: "rectangle.grid.1x2.fill")
+                .tag(true)
+                .accessibilityLabel(Text("Grid view"))
+            Image(systemName: "list.bullet")
+                .tag(false)
+                .accessibilityLabel(Text("List view"))
+        }
+        .pickerStyle(SegmentedPickerStyle())
+    }
+}
+
+struct RefreshButton: View {
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            Image(systemName: "arrow.clockwise")
+                .imageScale(.large)
+        }
+    }
+}
+
 struct UserListView_Previews: PreviewProvider {
     static var previews: some View {
-        UserListView()
+        UserListView(viewModel: UserListViewModel(repository: MockUserListRepository()))
     }
 }

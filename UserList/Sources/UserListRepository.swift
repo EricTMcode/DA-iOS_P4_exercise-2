@@ -1,6 +1,6 @@
 import Foundation
 
-struct UserListRepository {
+struct UserListRepository: UserListRepositoryProtocol {
 
     private let executeDataRequest: (URLRequest) async throws -> (Data, URLResponse)
 

@@ -2,7 +2,7 @@ import SwiftUI
 
 struct UserDetailView: View {
     let user: User
-    
+
     var body: some View {
         VStack {
             AsyncImage(url: URL(string: user.picture.large)) { image in
@@ -16,7 +16,7 @@ struct UserDetailView: View {
                     .frame(width: 200, height: 200)
                     .clipShape(Circle())
             }
-            
+
             VStack(alignment: .leading) {
                 Text("\(user.name.first) \(user.name.last)")
                     .font(.headline)
@@ -24,9 +24,13 @@ struct UserDetailView: View {
                     .font(.subheadline)
             }
             .padding()
-            
+
             Spacer()
         }
         .navigationTitle("\(user.name.first) \(user.name.last)")
     }
+}
+
+#Preview {
+    UserDetailView(user: .example)
 }

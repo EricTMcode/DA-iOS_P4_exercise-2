@@ -12,9 +12,15 @@ class UserListViewModel: ObservableObject {
     @Published var users: [User] = []
     @Published var isLoading = false
     @Published var isGridView = false
-
-    let repository = UserListRepository()
-
+    
+    private let repository: UserListRepositoryProtocol
+    
+    let titleText = "Users"
+    
+    init(repository: UserListRepositoryProtocol) {
+        self.repository = repository
+    }
+    
     func fetchUsers() {
         isLoading = true
         Task {
@@ -27,12 +33,13 @@ class UserListViewModel: ObservableObject {
             }
         }
     }
-
+    
     func reloadUsers() {
         users.removeAll()
         fetchUsers()
+        print(users.count)
     }
-
+    
     func shouldLoadMoreData(currentItem item: User) -> Bool {
         guard let lastItem = users.last else { return false }
         return !isLoading && item.id == lastItem.id

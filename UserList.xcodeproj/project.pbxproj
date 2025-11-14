@@ -7,9 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07006E172EBF6DAF008E1110 /* MockUserListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07006E162EBF6DAF008E1110 /* MockUserListRepository.swift */; };
+		07006E192EC21752008E1110 /* UserListRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07006E182EC21752008E1110 /* UserListRepositoryProtocol.swift */; };
 		07B8DC722EB8E1FA0020D60A /* UserListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B8DC712EB8E1FA0020D60A /* UserListViewModel.swift */; };
 		07B8DC762EB8E90E0020D60A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B8DC732EB8E90E0020D60A /* User.swift */; };
 		07B8DC772EB8E90E0020D60A /* UserListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B8DC742EB8E90E0020D60A /* UserListResponse.swift */; };
+		07B8DCA92EBA2C260020D60A /* ViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B8DCA82EBA2C260020D60A /* ViewModelTests.swift */; };
+		07B8DCC22EBA38770020D60A /* UserImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B8DCC12EBA38770020D60A /* UserImageView.swift */; };
+		07B8DCC42EBA38970020D60A /* UserCellTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B8DCC32EBA38970020D60A /* UserCellTypeView.swift */; };
 		2F015BA82ACC938F009A098C /* UserListRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F015BA72ACC938F009A098C /* UserListRepositoryTests.swift */; };
 		2F6F65332ACD69290011B439 /* Readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 2F6F65322ACD69290011B439 /* Readme.md */; };
 		2F804AE22ACC976300A46A03 /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F804AE12ACC976300A46A03 /* UserDetailView.swift */; };
@@ -32,9 +37,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		07006E162EBF6DAF008E1110 /* MockUserListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserListRepository.swift; sourceTree = "<group>"; };
+		07006E182EC21752008E1110 /* UserListRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListRepositoryProtocol.swift; sourceTree = "<group>"; };
 		07B8DC712EB8E1FA0020D60A /* UserListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewModel.swift; sourceTree = "<group>"; };
 		07B8DC732EB8E90E0020D60A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		07B8DC742EB8E90E0020D60A /* UserListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListResponse.swift; sourceTree = "<group>"; };
+		07B8DCA82EBA2C260020D60A /* ViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelTests.swift; sourceTree = "<group>"; };
+		07B8DCC12EBA38770020D60A /* UserImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImageView.swift; sourceTree = "<group>"; };
+		07B8DCC32EBA38970020D60A /* UserCellTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCellTypeView.swift; sourceTree = "<group>"; };
 		2F015BA72ACC938F009A098C /* UserListRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListRepositoryTests.swift; sourceTree = "<group>"; };
 		2F6F65322ACD69290011B439 /* Readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 		2F804AE12ACC976300A46A03 /* UserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
@@ -70,9 +80,11 @@
 		07B8DC702EB8E10E0020D60A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				07B8DCC32EBA38970020D60A /* UserCellTypeView.swift */,
 				2FFB64292AC6D255007F2F80 /* UserListView.swift */,
 				07B8DC712EB8E1FA0020D60A /* UserListViewModel.swift */,
 				2F804AE12ACC976300A46A03 /* UserDetailView.swift */,
+				07B8DCC12EBA38770020D60A /* UserImageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -93,6 +105,8 @@
 				07B8DC752EB8E90E0020D60A /* Model */,
 				07B8DC702EB8E10E0020D60A /* Views */,
 				2FF9D91E2ACB3DD400F3A6C5 /* UserListRepository.swift */,
+				07006E182EC21752008E1110 /* UserListRepositoryProtocol.swift */,
+				07006E162EBF6DAF008E1110 /* MockUserListRepository.swift */,
 				2FF9D9192ACB3CD800F3A6C5 /* HTTPClient */,
 			);
 			path = Sources;
@@ -147,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				2F015BA72ACC938F009A098C /* UserListRepositoryTests.swift */,
+				07B8DCA82EBA2C260020D60A /* ViewModelTests.swift */,
 				2FB4823B2ACC98DD0016CBA7 /* UserList.xctestplan */,
 			);
 			path = UserListTests;
@@ -253,12 +268,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				2FF9D91D2ACB3D8800F3A6C5 /* HTTPMethod.swift in Sources */,
+				07006E192EC21752008E1110 /* UserListRepositoryProtocol.swift in Sources */,
 				2FF9D91B2ACB3CE600F3A6C5 /* URLRequest.swift in Sources */,
 				2FFB642A2AC6D255007F2F80 /* UserListView.swift in Sources */,
+				07006E172EBF6DAF008E1110 /* MockUserListRepository.swift in Sources */,
 				07B8DC722EB8E1FA0020D60A /* UserListViewModel.swift in Sources */,
 				2F804AE22ACC976300A46A03 /* UserDetailView.swift in Sources */,
 				2FF9D91F2ACB3DD400F3A6C5 /* UserListRepository.swift in Sources */,
+				07B8DCC42EBA38970020D60A /* UserCellTypeView.swift in Sources */,
 				2FFB64282AC6D255007F2F80 /* UserListApp.swift in Sources */,
+				07B8DCC22EBA38770020D60A /* UserImageView.swift in Sources */,
 				07B8DC762EB8E90E0020D60A /* User.swift in Sources */,
 				07B8DC772EB8E90E0020D60A /* UserListResponse.swift in Sources */,
 			);
@@ -268,6 +287,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07B8DCA92EBA2C260020D60A /* ViewModelTests.swift in Sources */,
 				2F015BA82ACC938F009A098C /* UserListRepositoryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
