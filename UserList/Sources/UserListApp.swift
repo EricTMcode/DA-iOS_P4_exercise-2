@@ -11,7 +11,7 @@ import SwiftUI
 struct UserListApp: App {
     var body: some Scene {
         WindowGroup {
-            UserListView(viewModel: UserListViewModel(repository: MockUserListRepository()))
+            UserListView(viewModel: UserListViewModel(repository: UserListRepository()))
         }
     }
 }
